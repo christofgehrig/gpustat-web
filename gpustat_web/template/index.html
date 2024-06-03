@@ -10,6 +10,8 @@
 
         #gpustat { line-height: 0.95; }
         pre.ansi2html-content { white-space: pre; word-wrap: normal; }  /* no line break */
+        body.white { background-color: white; color: #555555;}
+        body.white .ansi37 {color: black}
     </style>
 
     {{ ansi2html_headers | safe }}
@@ -22,6 +24,8 @@
         by <a href="https://github.com/wookayin" target="_blank">@wookayin</a>
       <a href="javascript:clearTimeout(window.timer);" style="margin-left: 20px; color: #666666;"
          onclick="this.style.display='none';">[turn off auto-refresh]</a>
+      <span style="margin-left: 20px; color: #666666; cursor: pointer;"
+         onclick="toggle_white_mode()">[toggle bright mode]</span>
     </nav>
 
     <div id="gpustat">
@@ -68,5 +72,9 @@
           ws.close();  // close websocket client on exit
         };
         window.timer = setInterval( function() { update(); }, {{ interval }});
+
+        function toggle_white_mode() {
+          document.body.classList.toggle('white');
+        }
   </script>
 </html>
